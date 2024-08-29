@@ -7,5 +7,10 @@
 </head>
 <body>
     <h1><%= title %></h1>
+    <form action="/genres/add" method="post">
+        <label for="genreName">Add a genre:</label>
+        <input type="text" name="genreName" id="genreName">
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
