@@ -1,4 +1,6 @@
 const express = require("express")
+require("dotenv").config();
+
 const indexRouter = require("./routes/indexRouter")
 const bookRouter = require("./routes/bookRouter")
 const authorRouter = require("./routes/authorRouter")

@@ -1,6 +1,8 @@
+const { fetchGenre } = require("../db/queries")
+
 const getGenres = async (req, res) => {
     try {
-        const genres = await fetchGenres()
+        const genres = await fetchGenre()
     } catch (error) {
         res.render('error', { error: error })
     }
