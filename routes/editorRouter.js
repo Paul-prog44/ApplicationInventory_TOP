@@ -1,9 +1,9 @@
 const { Router } = require("express")
+const editorController = require("../controllers/editorController")
 
 const editorRouter = Router()
 
-editorRouter.get("/", (req, res) => {
-    res.send("All editors")
-})
+editorRouter.get("/", editorController.getEditors)
+editorRouter.get("/:id", editorController.getEditor)
 
 module.exports = editorRouter

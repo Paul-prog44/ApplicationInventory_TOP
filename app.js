@@ -4,7 +4,11 @@ const bookRouter = require("./routes/bookRouter")
 const authorRouter = require("./routes/authorRouter")
 const genreRouter = require("./routes/genreRouter")
 const editorRouter = require("./routes/editorRouter")
+const errorRouter = require("./routes/errorRouter")
 const app = express()
+
+app.use(express.urlencoded({ extended: false }));
+
 
 app.set("view engine", "ejs")
 
@@ -13,6 +17,7 @@ app.use("/books", bookRouter)
 app.use("/authors", authorRouter)
 app.use("/genres", genreRouter)
 app.use("/editors", editorRouter)
+app.use("/*", errorRouter)
 
 const PORT = process.env.PORT || 3000
 
