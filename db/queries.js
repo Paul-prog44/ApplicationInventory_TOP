@@ -1,5 +1,6 @@
 const pool = require("../db/pool");
 
+//GENRES
 async function fetchGenres() {
     const { rows } = await pool.query("SELECT * FROM genre")
     return rows
@@ -10,7 +11,7 @@ async function addGenre(genreName) {
 }
 
 async function deleteGenreDb(id) {
-    await pool.query(`DELETE FROM genre WHERE id = $1`, [id])
+    await pool.query("DELETE FROM genre WHERE id = $1", [id])
 }
 
 async function fetchGenre(id) {
@@ -18,9 +19,21 @@ async function fetchGenre(id) {
     return rows
 }
 
+//AUTHORS
+async function fetchAuthors() {
+    const { rows } = await pool.query("SELECT * FROM author")
+    return rows
+}
+
+async function addAuthor(author) {
+    await pool.query("INSERT INTO author (firstname, lastname, emailadress) VALUES ($1, $2, $3)", [author.firstname, author.lastname, author.emailAdress])
+}
+
 module.exports = {
     fetchGenres,
     addGenre,
     deleteGenreDb,
-    fetchGenre
+    fetchGenre, 
+    fetchAuthors,
+    addAuthor
 }

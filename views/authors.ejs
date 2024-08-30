@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <a href="/">Back</a>
+    <ul>
+        <% authors.forEach((author) => { %>
+            <li><%= author.firstname %> <%= author.lastname %> - <%=author.emailadress %></li>
+        <% }) %>
+    </ul>
+    <form action="/authors/add" method="post">
+        <label for="firstname">Author's firstname:</label>
+        <input type="text" name="firstname" id="firstname">
+        <label for="lastname">Author's lastname:</label>
+        <input type="text" name="lastname" id="lastname">
+        <label for="emailAdress">Author's Email adress:</label>
+        <input type="email" name="emailAdress" id="emailAdress">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
