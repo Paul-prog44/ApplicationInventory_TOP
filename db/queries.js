@@ -2,7 +2,7 @@ const pool = require("../db/pool");
 
 async function fetchGenres() {
     const { rows } = await pool.query("SELECT * FROM genre")
-    console.log(rows)
+    return rows
 }
 
 async function addGenre(genreName) {
@@ -15,7 +15,7 @@ async function deleteGenreDb(id) {
 
 async function fetchGenre(id) {
     const { rows } = await pool.query("SELECT * FROM genre WHERE name = $1", [id])
-    console.log(rows)
+    return rows
 }
 
 module.exports = {

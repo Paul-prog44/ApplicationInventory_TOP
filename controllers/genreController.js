@@ -2,11 +2,15 @@ const { fetchGenres, addGenre, deleteGenreDb } = require("../db/queries")
 
 const getGenres = async (req, res) => {
     try {
-        const genres = await fetchGenres()
-        res.redirect("/")
+        const genres = await fetchGenres().then()
+        res.render("genres", {
+            title : "Literrary genres",
+            genres : genres
+        })
     } catch (error) {
         res.render('error', { error: error })
-    }
+    } 
+    
 }
 
 const getGenre = async (req, res) => {
@@ -27,7 +31,7 @@ const createGenre = async (req, res) => {
     } catch (error) {
         res.render('error', { error : error})
     }
-    res.redirect('/')
+    res.redirect('/genres')
 }
 
 const deleteGenre = async (req, res) => {
