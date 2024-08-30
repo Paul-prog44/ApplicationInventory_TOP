@@ -1,4 +1,4 @@
-const { fetchAuthors, addAuthor, deleteAuthorDb } = require("../db/queries")
+const { fetchAuthors, addAuthor, deleteAuthorDb, fetchAuthor, modifyAuthorDb } = require("../db/queries")
 
 const getAuthors = async (req, res) => {
     try {
@@ -16,7 +16,17 @@ const getAuthor = async (req, res) => {
     const authorId = req.params.id
 
     try {
-        const author = await fetchAuthors()
+        let author = await fetchAuthor(authorId)
+        if (author.length == 0) { //if author doesnt exist
+            res.render('error', { error : "This author does not exist"})
+        } else {
+            author = author[0]
+            res.render("author", { 
+                title : `Author ${author.firstname} ${author.lastname}'s page`,
+                author : author
+            })
+        }
+        
     } catch (error) {
         res.render('error', { error: error })
     }
@@ -44,9 +54,20 @@ const deleteAuthor = async (req, res) => {
     }
 }
 
+const modifyAuthor = async (req, res) => {
+    try {
+        await modifyAuthorDb(req.body)
+        res.redirect("/authors")
+    } catch (error) {
+        console.log(error)
+        res.render("error", { error : error })
+    }
+}
+
 module.exports = { 
     getAuthors, 
     getAuthor, 
     createAuthor, 
-    deleteAuthor 
+    deleteAuthor,
+    modifyAuthor 
 }

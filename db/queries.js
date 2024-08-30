@@ -15,7 +15,7 @@ async function deleteGenreDb(id) {
 }
 
 async function fetchGenre(id) {
-    const { rows } = await pool.query("SELECT * FROM genre WHERE name = $1", [id])
+    const { rows } = await pool.query("SELECT * FROM genre WHERE id = $1", [id])
     return rows
 }
 
@@ -34,8 +34,14 @@ async function deleteAuthorDb(id) {
 }
 
 async function fetchAuthor(id) {
-    const { rows } = await pool.query("SELECT * FROM author WHERE name = $1", [id])
+    const { rows } = await pool.query("SELECT * FROM author WHERE id = $1", [id])
     return rows
+}
+
+async function modifyAuthorDb(author) {
+    const id = parseInt(author.id)
+    await pool.query("UPDATE author SET firstname = $1, lastname = $2, emailadress = $3 WHERE id = $4", 
+        [author.firstname, author.lastname, author.emailAdress, id])
 }
 
 module.exports = {
@@ -46,5 +52,6 @@ module.exports = {
     fetchAuthors,
     addAuthor,
     deleteAuthorDb,
-    fetchAuthor
+    fetchAuthor,
+    modifyAuthorDb
 }
