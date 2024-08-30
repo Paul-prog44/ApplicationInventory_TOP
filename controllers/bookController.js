@@ -1,4 +1,4 @@
-const { fetchBooks, fetchGenres, fetchEditors } = require("../db/queries")
+const { fetchBooks, fetchGenres, fetchEditors, fetchAuthors } = require("../db/queries")
 
 const getBooks = async (req, res) => {
 //TODO
@@ -6,7 +6,8 @@ const getBooks = async (req, res) => {
         const editors = await fetchEditors()
         const genres = await fetchGenres()
         const books = await fetchBooks()
-        res.render("books", {title : "Book list",books: books, genres: genres, editors: editors})
+        const authors = await fetchAuthors()
+        res.render("books", {title : "Book list",books: books, genres: genres, editors: editors, authors: authors})
     } catch (error) {
         res.render('error', { error: error })
     }

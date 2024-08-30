@@ -11,7 +11,7 @@
     
     <form action="/books/add" method="post">
         <h3>Add a book</h3>
-        <label for="bookTitle">Add a genre:</label>
+        <label for="bookTitle">Add a book:</label>
         <input type="text" name="bookTitle" id="bookTitle">
         <label for="pageNumber">Pages:</label>
         <input type="int" name="pageNumber" id="pageNumber">
@@ -21,11 +21,17 @@
                 <option value="<%= genre.id %>"><%= genre.name %></option>
             <% }) %> 
         </select>
+        <label for="editor">Editor:</label>
         <select name="editor">
             <% editors.forEach((editor) => { %>
                 <option value="<%= editor.id %>"><%= editor.name %></option>
             <% }) %>
         </select>
+        <label for="author">Author:</label>
+        <select>
+        <% authors.forEach((author) => { %>
+            <option value="<%= author.id %>"><%= author.firstname %> <%= author.lastname %></option>
+        <% }) %>
         <button type="submit">Submit</button>
     </form>
 </body>
