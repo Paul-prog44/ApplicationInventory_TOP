@@ -1,4 +1,4 @@
-const { fetchAuthors, addAuthor } = require("../db/queries")
+const { fetchAuthors, addAuthor, deleteAuthorDb } = require("../db/queries")
 
 const getAuthors = async (req, res) => {
     try {
@@ -32,4 +32,21 @@ const createAuthor = async (req, res) => {
     }
 }
 
-module.exports = { getAuthors, getAuthor, createAuthor }
+const deleteAuthor = async (req, res) => {
+    let id = req.params.id
+    console.log(id)
+    try {
+        await deleteAuthorDb(id)
+        res.redirect("/authors")
+    } catch(error) {
+        console.log(error)
+        res.render("error", { error : error })
+    }
+}
+
+module.exports = { 
+    getAuthors, 
+    getAuthor, 
+    createAuthor, 
+    deleteAuthor 
+}

@@ -10,7 +10,8 @@
     <a href="/">Back</a>
     <ul>
         <% authors.forEach((author) => { %>
-            <li><%= author.firstname %> <%= author.lastname %> - <%=author.emailadress %></li>
+            <li><%= author.firstname %> <%= author.lastname %> - <%=author.emailadress %>
+            <a href="authors/delete/<%= author.id %>"><button>Delete</button></a></li>
         <% }) %>
     </ul>
     <form action="/authors/add" method="post">

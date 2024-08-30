@@ -46,4 +46,9 @@ const deleteGenre = async (req, res) => {
     
 }
 
-module.exports = { getGenres, getGenre, createGenre, deleteGenre }
+module.exports = { 
+    getGenres, 
+    getGenre, 
+    createGenre, 
+    deleteGenre 
+}
