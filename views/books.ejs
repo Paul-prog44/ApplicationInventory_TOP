@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <a href="/">Back</a>
+    
+    <form action="/books/add" method="post">
+        <h3>Add a book</h3>
+        <label for="bookTitle">Add a genre:</label>
+        <input type="text" name="bookTitle" id="bookTitle">
+        <label for="pageNumber">Pages:</label>
+        <input type="int" name="pageNumber" id="pageNumber">
+        <label for="genre">Genre :</label>
+        <select name="genre">
+            <% genres.forEach((genre) => { %>
+                <option value="<%= genre.id %>"><%= genre.name %></option>
+            <% }) %> 
+        </select>
+        <select name="editor">
+            <% editors.forEach((editor) => { %>
+                <option value="<%= editor.id %>"><%= editor.name %></option>
+            <% }) %>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

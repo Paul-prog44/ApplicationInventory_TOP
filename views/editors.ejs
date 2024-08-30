@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <a href="/"><button>Back</button></a>
+    <ul>
+        <% editors.forEach((editor) => { %>
+            <li>
+                <%= editor.name %>
+                <a href="/editors/delete/<%= editor.id %>"><button>Delete</button></a>
+                <a href="/editors/<%= editor.id %>"><button>Modify</button></a>
+            </li>
+        <% }) %>
+    </ul>
+    <form action="/editors/add" method="post">
+        <label for="editorName">Add an editor:</label>
+        <input type="text" name="editorName" id="editorName">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

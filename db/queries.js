@@ -49,6 +49,36 @@ async function modifyAuthorDb(author) {
         [author.firstname, author.lastname, author.emailAdress, id])
 }
 
+//BOOKS
+async function fetchBooks() {
+    const { rows } = await pool.query("SELECT * FROM book")
+    return rows
+}
+
+//EDITORS
+async function fetchEditor(id) {
+    const { rows } = await pool.query("SELECT * FROM editor WHERE id = $1", [id])
+    return rows
+}
+
+async function fetchEditors() {
+    const { rows } = await pool.query("SELECT * FROM editor")
+    return rows
+}
+
+async function addEditor(editor) {
+    await pool.query("INSERT INTO editor (name) VALUES ($1)", [editor.editorName])
+}
+
+async function deleteEditorDb(id) {
+    await pool.query("DELETE FROM editor WHERE id = $1", [id])
+}
+
+async function modifyEditorDb(editor) {
+    const id = parseInt(editor.id)
+    await pool.query("UPDATE editor SET name = $1 WHERE id= $2", [editor.editorName, id])
+}
+
 module.exports = {
     fetchGenres,
     addGenre,
@@ -59,5 +89,11 @@ module.exports = {
     deleteAuthorDb,
     fetchAuthor,
     modifyAuthorDb,
-    modifyGenreDb
+    modifyGenreDb,
+    fetchBooks,
+    fetchEditors,
+    addEditor,
+    deleteEditorDb,
+    fetchEditor,
+    modifyEditorDb
 }

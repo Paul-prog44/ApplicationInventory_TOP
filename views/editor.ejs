@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <a href="/editors"><button>Back</button></a>
+    <form action="/editors/modify" method="post">
+        <label for="editorName">Name:</label>
+        <input type="text" name="editorName" id="editorName" value="<%= editor.name %>">
+        <input type="hidden" name="id" value="<%= editor.id %>">
+        <button type="submit">Modify</button>
+    </form>
+</body>
+</html>
