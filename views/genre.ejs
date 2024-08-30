@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= genre.name %></title>
+</head>
+<body>
+    <h1>Genre: <%= genre.name %></h1>
+    <a href="/genres"><button>Back</button></a>
+    <form action="/genres/modify" method="post">
+        <label for="name">Literary genre:</label>
+        <input type="text" name="name" id="name" value="<%= genre.name %>">
+        <input type="hidden" name="id" value="<%= genre.id %>">
+        <button type="submit">Modify</button>
+    </form>
+</body>
+</html>

@@ -10,7 +10,11 @@
     <a href="/">Back</a>
     <ul>
         <% genres.forEach((genre) => { %>
-            <li><%= genre.name %></li>
+            <li>
+                <%= genre.name %>
+                <a href="genres/delete/<%= genre.id %>"><button>Delete</button></a>
+                <a href="genres/<%= genre.id %>"><button>Modify</button></a>
+            </li>
         <% }) %>
     </ul>
     <form action="/genres/add" method="post">

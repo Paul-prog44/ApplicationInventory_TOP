@@ -1,4 +1,5 @@
-const { fetchGenres, addGenre, deleteGenreDb } = require("../db/queries")
+const { render } = require("ejs")
+const { fetchGenres, addGenre, deleteGenreDb, fetchGenre, modifyGenreDb,  } = require("../db/queries")
 
 const getGenres = async (req, res) => {
     try {
@@ -15,9 +16,10 @@ const getGenres = async (req, res) => {
 
 const getGenre = async (req, res) => {
     const genreId = req.params.id
-
     try {
-        const genre = await fetchGenre(genreId)
+        let genre = await fetchGenre(genreId)
+        genre = genre[0]
+        res.render("genre", { genre: genre })
     } catch (error) {
         res.render('error', { error: error })
     }
@@ -36,19 +38,31 @@ const createGenre = async (req, res) => {
 
 const deleteGenre = async (req, res) => {
     let id = req.params.id
-    
+
     try {
         await deleteGenreDb(id)
+        res.redirect("/genres")
     } catch (error) {
         console.log(error)
         res.render("error", { error : error })
     }
-    
+}
+
+const modifyGenre= async (req, res) => {
+    let genre = req.body
+    try {
+        await modifyGenreDb(genre)
+        res.redirect("/genres")
+    } catch (error) {
+        console.log(error)
+        res.render("error", { error : error })
+    }
 }
 
 module.exports = { 
     getGenres, 
     getGenre, 
     createGenre, 
-    deleteGenre 
+    deleteGenre,
+    modifyGenre
 }

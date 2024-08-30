@@ -12,7 +12,7 @@ CREATE TABLE "author" (
   "id" integer UNIQUE PRIMARY KEY,
   "firstname" varchar,
   "lastname" varchar,
-  "emailAdress" varchar UNIQUE
+  "emailadress" varchar UNIQUE
 );
 
 CREATE TABLE "editor" (

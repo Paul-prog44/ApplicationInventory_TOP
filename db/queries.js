@@ -19,6 +19,11 @@ async function fetchGenre(id) {
     return rows
 }
 
+async function modifyGenreDb(genre) {
+    const id = parseInt(genre.id)
+    await pool.query("UPDATE genre SET name = $1 WHERE id = $2", [genre.name, id])
+}
+
 //AUTHORS
 async function fetchAuthors() {
     const { rows } = await pool.query("SELECT * FROM author")
@@ -53,5 +58,6 @@ module.exports = {
     addAuthor,
     deleteAuthorDb,
     fetchAuthor,
-    modifyAuthorDb
+    modifyAuthorDb,
+    modifyGenreDb
 }
