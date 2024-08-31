@@ -55,6 +55,20 @@ async function fetchBooks() {
     return rows
 }
 
+async function fetchBook(id) {
+    const bookId = parseInt(id)
+    const { rows } = await pool.query("SELECT * FROM book WHERE id = $1", [bookId])
+    return rows
+}
+
+async function addBook(book) {
+    const authorId = parseInt(book.author)
+    const editorId = parseInt(book.editor)
+    const genreId = parseInt(book.genre)
+    await pool.query("INSERT INTO book (title, author_id, \"pageNumber\", editor_id, genre_id, price) VALUES ($1, $2, $3, $4, $5, $6)", 
+        [book.bookTitle, authorId, book.pageNumber, editorId, genreId, book.price])
+}
+
 //EDITORS
 async function fetchEditor(id) {
     const { rows } = await pool.query("SELECT * FROM editor WHERE id = $1", [id])
@@ -95,5 +109,7 @@ module.exports = {
     addEditor,
     deleteEditorDb,
     fetchEditor,
-    modifyEditorDb
+    modifyEditorDb,
+    addBook,
+    fetchBook
 }

@@ -5,7 +5,8 @@ const bookRouter = Router()
 
 bookRouter.get("/", bookController.getBooks)
 bookRouter.get("/:id", bookController.getBook)
-bookRouter.get("/add", bookController.createBook)
+bookRouter.post("/add", bookController.createBook)
+bookRouter.get("/book/:id", bookController.getBook)
 
 
 module.exports = bookRouter

@@ -6,24 +6,23 @@
     <title><%= title %></title>
 </head>
 <body>
-    <h1><%= title %></h1>
-    <a href="/">Back</a>
-    <ul>
-        <% books.forEach((book) => { %>
-            <li><%= book.title %> - <%= book.price %> €
-            <a href="/books/<%= book.id %>"><button>Modify</button></a>
-            </li>
-        <% }) %>
-    </ul>
-    
+    <h1>Book: <%= title %></h1>
+    <a href="/books">Back</a>
+
     <form action="/books/add" method="post">
-        <h3>Add a book</h3>
-        <label for="bookTitle">Add a book:</label>
-        <input type="text" name="bookTitle" id="bookTitle">
+        <h3>Current informations</h3>
+        <p>Title: <%= book.title %></p>
+        <p>Author: <%= currentAuthor.firstname %> <%= currentAuthor.lastname %></p>
+        <p>Page number: <%= book.pageNumber %></p>
+        <p>Price: <%= book.price %> €</p>
+        
+        <h3>Modify</h3>
+        <label for="bookTitle">Title:</label>
+        <input type="text" name="bookTitle" id="bookTitle" value="<%= book.title %>">
         <label for="pageNumber">Pages:</label>
-        <input type="int" name="pageNumber" id="pageNumber">
+        <input type="int" name="pageNumber" id="pageNumber" value="<%= book.pageNumber %>">
         <label for="price">Price:</label>
-        <input type="int" name="price" id="price">
+        <input type="int" name="price" id="price" value="<%= book.price %>">
         <label for="genre">Genre :</label>
         <select name="genre">
             <% genres.forEach((genre) => { %>
@@ -42,7 +41,7 @@
             <option value="<%= author.id %>"><%= author.firstname %> <%= author.lastname %></option>
         <% }) %>
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit">Modify</button>
     </form>
 </body>
 </html>

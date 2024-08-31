@@ -1,7 +1,6 @@
-const { fetchBooks, fetchGenres, fetchEditors, fetchAuthors } = require("../db/queries")
+const { fetchBooks, fetchGenres, fetchEditors, fetchAuthors, addBook, fetchBook, fetchEditor, fetchAuthor } = require("../db/queries")
 
 const getBooks = async (req, res) => {
-//TODO
     try {
         const editors = await fetchEditors()
         const genres = await fetchGenres()
@@ -15,10 +14,16 @@ const getBooks = async (req, res) => {
 
 const getBook = async (req, res) => {
     const bookId = req.params.id
-    console.log(bookId)
     try {
-        const book = await fetchBook()
-        console.log(book)
+        const editors = await fetchEditors()
+        const genres = await fetchGenres()
+        const authors = await fetchAuthors()
+        let book = await fetchBook(bookId)
+        book = book[0]
+        const author = await fetchAuthor(book.author_id)
+        res.render("book", {title: book.title, book: book, genres: genres, editors: editors, authors: authors,
+            currentAuthor: author[0]
+        })
     } catch (error) {
         res.render('error', { error: error })
     }
@@ -26,8 +31,10 @@ const getBook = async (req, res) => {
 
 const createBook = async (req, res) => {
     const book = req.body
+    console.log(book)
     try {
         await addBook(book)
+        res.redirect("/books")
     } catch (error) {
         res.render("error", { error : error})
     }
