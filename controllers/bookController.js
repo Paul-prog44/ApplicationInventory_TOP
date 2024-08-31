@@ -8,7 +8,8 @@ const {
     fetchEditor, 
     fetchAuthor, 
     fetchGenre,
-    updateBook
+    updateBook,
+    deleteBookDb
 } = require("../db/queries")
 
 const getBooks = async (req, res) => {
@@ -65,4 +66,14 @@ const modifyBook = async (req, res) => {
     }
 }
 
-module.exports = { getBooks, createBook, getBook, modifyBook }
+const deleteBook = async (req, res) => {
+    let bookId = req.params.id
+    try {
+        await deleteBookDb(bookId)
+        res.redirect("/books")
+    } catch (error) {
+        res.render("error", { error : error})
+    }
+
+}
+module.exports = { getBooks, createBook, getBook, modifyBook, deleteBook }

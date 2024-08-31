@@ -70,7 +70,6 @@ async function addBook(book) {
 }
 
 async function updateBook(book) {
-    console.log(book)
     const bookId = parseInt(book.id)
     const authorId = parseInt(book.author)
     const editorId = parseInt(book.editor)
@@ -85,6 +84,10 @@ async function updateBook(book) {
     await pool.query("UPDATE book SET title = $1, author_id = $2, \"pageNumber\" = $3, editor_id = $4, genre_id = $5, price = $6 WHERE id = $7",
          [book.title, authorId, pageNumber, editorId, genreId, price, bookId]
     )
+}
+
+async function deleteBookDb(id) {
+    await pool.query("DELETE FROM book WHERE id = $1", [id])
 }
 
 //EDITORS
@@ -130,5 +133,6 @@ module.exports = {
     modifyEditorDb,
     addBook,
     fetchBook,
-    updateBook
+    updateBook,
+    deleteBookDb
 }

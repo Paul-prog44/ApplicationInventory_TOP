@@ -11,6 +11,7 @@
     <ul>
         <% books.forEach((book) => { %>
             <li><%= book.title %> - <%= book.price %> €
+            <a href="/books/delete/<%= book.id %>"><button>Delete</button></a>
             <a href="/books/<%= book.id %>"><button>Modify</button></a>
             </li>
         <% }) %>
