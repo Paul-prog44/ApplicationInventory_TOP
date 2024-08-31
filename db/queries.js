@@ -69,6 +69,24 @@ async function addBook(book) {
         [book.bookTitle, authorId, book.pageNumber, editorId, genreId, book.price])
 }
 
+async function updateBook(book) {
+    console.log(book)
+    const bookId = parseInt(book.id)
+    const authorId = parseInt(book.author)
+    const editorId = parseInt(book.editor)
+    const genreId = parseInt(book.genre)
+    const pageNumber = parseInt(book.pageNumber)
+    const price = parseFloat(book.price)
+    //Check for int values before sending req
+    if (isNaN(bookId) || isNaN(authorId) || isNaN(editorId) || isNaN(genreId) || isNaN(pageNumber) || isNaN(price)) {
+        throw new Error('Invalid input: One or more numeric fields are NaN');
+    }
+
+    await pool.query("UPDATE book SET title = $1, author_id = $2, \"pageNumber\" = $3, editor_id = $4, genre_id = $5, price = $6 WHERE id = $7",
+         [book.title, authorId, pageNumber, editorId, genreId, price, bookId]
+    )
+}
+
 //EDITORS
 async function fetchEditor(id) {
     const { rows } = await pool.query("SELECT * FROM editor WHERE id = $1", [id])
@@ -111,5 +129,6 @@ module.exports = {
     fetchEditor,
     modifyEditorDb,
     addBook,
-    fetchBook
+    fetchBook,
+    updateBook
 }

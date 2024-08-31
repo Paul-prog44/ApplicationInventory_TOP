@@ -7,6 +7,7 @@ bookRouter.get("/", bookController.getBooks)
 bookRouter.get("/:id", bookController.getBook)
 bookRouter.post("/add", bookController.createBook)
 bookRouter.get("/book/:id", bookController.getBook)
+bookRouter.post("/modify", bookController.modifyBook)
 
 
 module.exports = bookRouter
