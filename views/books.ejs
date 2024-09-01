@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title><%= title %></title>
 </head>
 <body>
     <h1><%= title %></h1>
     <a href="/">Back</a>
-    <ul>
+    <ul class="list">
         <% books.forEach((book) => { %>
-            <li><%= book.title %> - <%= book.price %> €
+            <li class="listElement"><%= book.title %> - <%= book.price %> €
             <a href="/books/delete/<%= book.id %>"><button>Delete</button></a>
             <a href="/books/<%= book.id %>"><button>Modify</button></a>
             </li>
