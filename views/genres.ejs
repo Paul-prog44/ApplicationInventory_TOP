@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <title><%= title %></title>
 </head>
 <body>
@@ -11,10 +11,10 @@
     <a href="/">Back</a>
     <ul>
         <% genres.forEach((genre) => { %>
-            <li>
+            <li  class="listElement">
                 <%= genre.name %>
-                <a href="genres/delete/<%= genre.id %>"><button>Delete</button></a>
-                <a href="genres/<%= genre.id %>"><button>Modify</button></a>
+                <a href="genres/delete/<%= genre.id %>"><button class="deleteButton">Delete</button></a>
+                <a href="genres/<%= genre.id %>"><button class="modifyButton">Modify</button></a>
             </li>
         <% }) %>
     </ul>

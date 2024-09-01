@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <title><%= title %></title>
 </head>
 <body>
@@ -11,20 +11,30 @@
     <a href="/">Back</a>
     <ul>
         <% authors.forEach((author) => { %>
-            <li><%= author.firstname %> <%= author.lastname %> - <%=author.emailadress %>
-            <a href="authors/delete/<%= author.id %>"><button>Delete</button></a>
-            <a href="authors/<%= author.id %>"><button>Modify</button></a></li>
+            <li class="listElement"><%= author.firstname %> <%= author.lastname %> - <%=author.emailadress %>
+            <a href="authors/delete/<%= author.id %>"><button class="deleteButton">Delete</button></a>
+            <a href="authors/<%= author.id %>"><button class="modifyButton">Modify</button></a></li>
 
         <% }) %>
     </ul>
-    <form action="/authors/add" method="post">
-        <label for="firstname">Author's firstname:</label>
-        <input type="text" name="firstname" id="firstname">
-        <label for="lastname">Author's lastname:</label>
-        <input type="text" name="lastname" id="lastname">
-        <label for="emailAdress">Author's Email adress:</label>
-        <input type="email" name="emailAdress" id="emailAdress">
-        <button type="submit">Add</button>
+    <form action="/authors/add" method="post"class="addsection">
+        <h3>Add an author</h3>
+
+        <div class="divInput">
+            <label for="firstname">Author's firstname:</label>
+            <input type="text" name="firstname" id="firstname">
+        </div>
+        <div class="divInput">
+            <label for="lastname">Author's lastname:</label>
+            <input type="text" name="lastname" id="lastname">
+        </div>
+        <div class="divInput">
+            <label for="emailAdress">Author's Email adress:</label>
+            <input type="email" name="emailAdress" id="emailAdress">
+        </div>
+        <button type="submit" class="submitButton">Submit</button>
     </form>
+    
+    
 </body>
 </html>

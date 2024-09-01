@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <title><%= title %></title>
 </head>
 <body>
     <h1><%= title %></h1>
-    <a href="/"><button>Back</button></a>
+    <a href="/">Back</a>
     <ul>
         <% editors.forEach((editor) => { %>
-            <li>
+            <li  class="listElement">
                 <%= editor.name %>
-                <a href="/editors/delete/<%= editor.id %>"><button>Delete</button></a>
-                <a href="/editors/<%= editor.id %>"><button>Modify</button></a>
+                <a href="/editors/delete/<%= editor.id %>"><button class="deleteButton">Delete</button></a>
+                <a href="/editors/<%= editor.id %>"><button class="modifyButton">Modify</button></a>
             </li>
         <% }) %>
     </ul>
