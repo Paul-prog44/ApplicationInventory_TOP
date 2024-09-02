@@ -9,7 +9,8 @@ const {
     fetchAuthor, 
     fetchGenre,
     updateBook,
-    deleteBookDb
+    deleteBookDb,
+    fetchView
 } = require("../db/queries")
 
 const getBooks = async (req, res) => {
@@ -18,6 +19,7 @@ const getBooks = async (req, res) => {
         const genres = await fetchGenres()
         const books = await fetchBooks()
         const authors = await fetchAuthors()
+        fetchView()
         res.render("books", {title : "Book list",books: books, genres: genres, editors: editors, authors: authors})
     } catch (error) {
         res.render('error', { error: error })

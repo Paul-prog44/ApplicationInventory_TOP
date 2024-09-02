@@ -114,6 +114,12 @@ async function modifyEditorDb(editor) {
     await pool.query("UPDATE editor SET name = $1 WHERE id= $2", [editor.editorName, id])
 }
 
+//TEST VIEW SQL
+async function fetchView() {
+    const { rows } = await pool.query("SELECT * FROM bookauthor")
+    console.log(rows)
+}
+
 module.exports = {
     fetchGenres,
     addGenre,
@@ -134,5 +140,6 @@ module.exports = {
     addBook,
     fetchBook,
     updateBook,
-    deleteBookDb
+    deleteBookDb,
+    fetchView
 }

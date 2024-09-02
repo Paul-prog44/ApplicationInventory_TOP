@@ -1,4 +1,5 @@
 const { Router } = require("express")
+const { fetchView } = require("../db/queries")
 
 const indexRouter = Router()
 
